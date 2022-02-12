@@ -1,0 +1,30 @@
+Traceback (most recent call last):
+  File "/home/buzzappc/buzz_html/passenger_wsgi.py", line 28, in <module>
+    import projectname.wsgi
+ImportError: No module named 'projectname'
+Traceback (most recent call last):
+  File "/home/buzzappc/buzz_html/passenger_wsgi.py", line 28, in <module>
+    import projectname.wsgi
+ImportError: No module named 'projectname'
+Traceback (most recent call last):
+  File "/home/buzzappc/buzz_html/passenger_wsgi.py", line 28, in <module>
+    import projectname.wsgi
+ImportError: No module named 'projectname'
+Traceback (most recent call last):
+  File "/home/buzzappc/buzz_html/passenger_wsgi.py", line 28, in <module>
+    import projectname.wsgi
+ImportError: No module named 'projectname'
+Traceback (most recent call last):
+  File "/home/buzzappc/buzz_html/passenger_wsgi.py", line 28, in <module>
+    import projectname.wsgi
+ImportError: No module named 'projectname'
+Invalid HTTP_HOST header: 'buzzapp.ca'. You may need to add 'buzzapp.ca' to ALLOWED_HOSTS.
+Bad Request: /
+Invalid HTTP_HOST header: 'buzzapp.ca'. You may need to add 'buzzapp.ca' to ALLOWED_HOSTS.
+Bad Request: /favicon.ico
+Invalid HTTP_HOST header: 'buzzapp.ca'. You may need to add 'buzzapp.ca' to ALLOWED_HOSTS.
+Bad Request: /
+Invalid HTTP_HOST header: 'buzzapp.ca'. You may need to add 'buzzapp.ca' to ALLOWED_HOSTS.
+Bad Request: /favicon.ico
+Not Found: /static/admin/css/fonts.css
+Not Found: /favicon.ico
