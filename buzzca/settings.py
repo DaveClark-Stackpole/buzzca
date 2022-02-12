@@ -22,7 +22,7 @@ SECRET_KEY = '=-#i@xqkfo!o4)v1786$u2(-0&9j*o6hufkl(m9vg2!yci%xkx'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1:8080']
+ALLOWED_HOSTS = ['buzzapp.ca']
 
 MEDIA_URL = '/media/'
 
