@@ -25,6 +25,10 @@ DEBUG = True
 ALLOWED_HOSTS = ['buzzapp.ca']
 
 
+TEMPLATE_DIRS = (
+    '/templates/',
+)
+
 # Application definition
 
 INSTALLED_APPS = [
