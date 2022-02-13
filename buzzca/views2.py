@@ -10,4 +10,4 @@ from datetime import datetime
 # Call Main Login screen
 def test(request):
 	
-	return render(request, "test4.html")
+	return render(request, "/templates/test4.html")
