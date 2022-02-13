@@ -125,4 +125,4 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'public') #after collect static is run all the static files will be put in this folder
 STATICFILES_DIRS = ( #is where Django will additionally look for static files
 )
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
