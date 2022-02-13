@@ -135,4 +135,4 @@ USE_TZ = True
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/home/buzzappc/public_html/static'
+STATIC_ROOT = '/home/buzzappc/public_html/static/buzzca'
