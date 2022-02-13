@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 # from django.urls import include,path
 from django.conf.urls import include, url
-from views2 import test
+from buzzca.views2 import test
 
 
 urlpatterns = [
