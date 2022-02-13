@@ -23,5 +23,6 @@ urlpatterns = [
     # url(r'^admin/',include(admin.site.urls)),
     # path('admin/', admin.site.urls),
     # path('test/',include('views2.test')),
+    url(r'^test/',test),
 
 ]
