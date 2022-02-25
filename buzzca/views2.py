@@ -5,9 +5,17 @@ from django.http import HttpResponseRedirect
 from datetime import datetime
 
 
+import os
+
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 
 
 # Call Main Login screen
 def test(request):
-	
-	return render(request, "test4.html")
+	BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+	# BASE_DIR = BASE_DIR + '\\static\\buzzca'
+	# t=4/0
+	dir = BASE_DIR
+	# p=8/0
+
+	return render(request, "test4.html",)
