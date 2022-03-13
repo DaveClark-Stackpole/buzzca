@@ -18,6 +18,13 @@ def test(request):
 	# p=8/0
 
 	db, cur = db_set(request)
+
+	a = 'Dave'
+	b = 10
+
+	cur.execute("""CREATE TABLE IF NOT EXISTS test_A(Id INT PRIMARY KEY AUTO_INCREMENT,var1 CHAR(80), int1 INT(30) )""")
+	cur.execute('''INSERT INTO test_A(var1,int1) VALUES(%s,%s)''', (a,b))
+	db.commit()
 	db.close()
 
 
