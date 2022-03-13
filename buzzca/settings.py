@@ -105,8 +105,8 @@ DATABASES = {
 		'NAME': 'buzzappc_buzzmysql',
 		'USER': 'buzzappc_buzzapp',
 		'PASSWORD': 'benny6868',
-		'HOST': 'localhost',
-		'PORT': '3306',
+		'HOST': '127.0.0.1',
+		'PORT': '',
 	# 'OPTIONS': {
 	#   'sql_mode': 'STRICT_ALL_TABLES',
 
