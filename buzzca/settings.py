@@ -81,11 +81,40 @@ WSGI_APPLICATION = 'buzzca.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
+# DATABASES = {
+#          'default': {
+#              'ENGINE': 'django.db.backends.mysql', 
+#              'NAME': 'prodrptdb',                      
+#              'USER': 'stuser',                      
+#              'HOST': '10.4.1.224', 
+#              'PASSWORD':'stp383', 
+#          }
+#           }
+
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+
+  'default': {
+    'ENGINE': 'django.db.backends.mysql',
+    'NAME': 'buzzappc_buzzmysql',
+    'USER': 'buzzappc_buzzapp',
+    'PASSWORD': 'benny6868',
+    'HOST': 'localhost',
+    'PORT': '3306',
+    'OPTIONS': {
+      'sql_mode': 'STRICT_ALL_TABLES',
+
+    },
+
+  }
+
 }
 
 
