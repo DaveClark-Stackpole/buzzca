@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from datetime import datetime
 import os
 import time
-from views_db import db_set
+from buzzca.views_db import db_set
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 
