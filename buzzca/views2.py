@@ -22,8 +22,9 @@ def test(request):
 	a = 'Dave'
 	b = 10
 
-	cur.execute("""CREATE TABLE IF NOT EXISTS test_A(Id INT PRIMARY KEY AUTO_INCREMENT,var1 CHAR(80), int1 INT(30) )""")
-	cur.execute('''INSERT INTO test_A(var1,int1) VALUES(%s,%s)''', (a,b))
+	cur.execute("""CREATE TABLE IF NOT EXISTS test_A(Id INT PRIMARY KEY AUTO_INCREMENT,variable_A VARCHAR(80), number_A INT(30))""")
+
+	cur.execute('''INSERT INTO test_A(variable_A,number_A) VALUES(%s,%s)''', (a,b))
 	db.commit()
 	db.close()
 
