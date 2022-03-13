@@ -107,10 +107,10 @@ DATABASES = {
 		'PASSWORD': 'benny6868',
 		'HOST': '127.0.0.1',
 		'PORT': '',
-	# 'OPTIONS': {
-	#   'sql_mode': 'STRICT_ALL_TABLES',
+	'OPTIONS': {
+	  'sql_mode': 'STRICT_ALL_TABLES',
 
-	# },
+	},
 	}
 
 }
