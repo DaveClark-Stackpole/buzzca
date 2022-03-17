@@ -1,0 +1,39 @@
+
+{% extends "main.html" %}
+
+{% block menu %}
+{% endblock %}
+
+
+{% block content %}
+<br><br><br><br>
+<div class="col-lg-12">
+
+<form action="" method="post">{% csrf_token %}
+<table>
+	<tr><td colspan="2" style="font-size:25px;background-color: {{request.session.secondary_menu_color}}; color: {{request.session.secondary_text_color}};"><b><center>Log In</center></b></td><tr>
+		<tr</tr>
+		<tr><td><b><u>Login Name</b></u></td><td>
+            
+	<select style="font-size:14px;width:320px;height:30px;" name="login_name" >
+{% for i in request.session.scrap_mgmt_manpower %}
+<option value="{{ i.1 }}">{{ i.1 }}</option>
+{% endfor %}
+</select>
+</td></tr>
+<tr><td><b><u>Password</b></u>&nbsp;&nbsp;&nbsp;</td><td><input style="font-size:14px;width:320px;height:30px;" type="password" name="login_password"></td></tr>
+<tr></tr>
+<tr><td colspan="2" ><center>
+	<input style="background-color: #999999;border-radius: 10px;height:30px;" type="submit" name="button1" value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enter&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<input style="background-color: #999999;border-radius: 10px;height:30px;" type="submit" name="button2" value="&nbsp;&nbsp;&nbsp;&nbsp;Forgot Password&nbsp;&nbsp;&nbsp;&nbsp;">
+</center></td></tr>
+
+</table>
+</form>
+
+</font>
+
+</div>
+{% endblock %}
+

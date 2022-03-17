@@ -23,7 +23,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 
-from buzzca.views2 import test
+from buzzca.views2 import main, member_login
 
 
 
@@ -31,7 +31,10 @@ urlpatterns = [
     # url(r'^admin/',include(admin.site.urls)),
     # path('admin/', admin.site.urls),
     # path('test/',include('views2.test')),
-    url(r'^$',test),
+    url(r'^$',main),
+    url(r'^main',main),
+    url(r'^member_login/', member_login),
+
 
 
 ]
