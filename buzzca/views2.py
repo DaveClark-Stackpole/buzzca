@@ -2,7 +2,11 @@ from django.shortcuts import render
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from datetime import datetime
-from django.core.context_processors import csrf
+# from django.core.context_processors import csrf
+
+from django.template.context_processors import csrf
+
+
 from buzzca.forms import login_Form
 import os
 import time
