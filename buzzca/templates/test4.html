@@ -47,27 +47,16 @@
                 </button>
 
                     <div style="display:inline-block;vertical-align:middle;">
-                        <a class="navbar-brand" href="index.html"><img src="/static/logo3.jpg?{{TCUR}}" style="border-radius: 15px;position:absolute;left:0px;top:3px;" height="40"></a>
+                        <a class="navbar-brand" href="index.html"><img src="/static/logo4.svg?{{TCUR}}" style="border-radius: 15px;position:absolute;left:0px;top:3px;" height="40"></a>
                     </div>
                     <div style="display:inline-block;position:absolute;left:60px;top:10px;">
                         <p>
                             
                             <!-- <font style="font-size:21px; font-family: Verdana, sans-serif; color:#222121;"> -->
-                            
-                            
-                            
                             <font style="font-size: 21px; color:black; text-shadow: 1px 1px 2px white, 0 0 25px black, 0 0 5px black;">
-      
-                            
-                            
                             BuzzApp.ca
-                        
-                        
                         </font></p>
                     </div>
-
-
-
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -104,6 +93,10 @@
         </div>
         <!-- /.container -->
     </nav>
+
+
+
+    {% block content %}
 
     <!-- Header Carousel -->
     <header id="myCarousel" class="carousel slide">
@@ -310,6 +303,10 @@
         interval: 5000 //changes the speed
     })
     </script>
+
+
+
+{% endblock %}
 
 </body>
 </html>
