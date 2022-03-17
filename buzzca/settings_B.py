@@ -94,7 +94,7 @@ DATABASES = {
 
        'default': {
            'ENGINE': 'django.db.backends.mysql',
-	        'NAME': 'prodrptdb',
+	        'NAME': 'buzzappc_buzzmysql',
 		    'USER': 'root',
 		    'PASSWORD':'benny6868',
 		    'HOST': '127.0.0.1',

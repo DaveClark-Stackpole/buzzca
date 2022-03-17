@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from datetime import datetime
+from django.core.context_processors import csrf
+from buzzca.forms import login_Form
 import os
 import time
 from buzzca.views_db import db_set
@@ -35,8 +37,37 @@ def main(request):
 
 	request.session['secondary_menu_color']='#A0AEB8'
 	request.session['secondary_text_color'] ='#000000'
-	request.session['main_menu_color'] ='#AFCAF5'
+	request.session['main_menu_color'] ='#BCCAD5'
 	return render(request, "main.html",)
 
 def member_login(request):
-	return render(request, "member_login.html",)
+
+
+	if 'button1' in request.POST:
+
+		login_name = request.POST.get("login_name")
+		login_password = request.POST.get("login_password")
+		e=3/0
+		request.session["login_name"] = login_name
+		request.session["login_password"] = login_password
+		request.session['main_login_verify'] = 1
+		
+		login_initial(request,login_name)
+		return main(request)
+		
+	elif 'button2' in request.POST:
+		ee=3/0
+		request.session["password_lost_route1"] = "main_log.html"
+		return render(request,'login/reroute_lost_password.html')
+
+	else:
+		form = login_Form()
+	args = {}
+	args.update(csrf(request))
+	args['form'] = form
+	request.session["login_name"] = ""
+	request.session["login_password"] = ""
+
+	return render(request,'member_login.html', args)
+
+
