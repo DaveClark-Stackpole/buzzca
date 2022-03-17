@@ -93,7 +93,7 @@ DATABASES = {
        'default': {
            'ENGINE': 'django.db.backends.mysql',
 	        'NAME': 'buzzappc_buzzmysql',
-		    'USER': 'root',
+		    'USER': 'buzzappc_buzzapp',
 		    'PASSWORD':'benny6868',
 		    'HOST': '127.0.0.1',
 		    'PORT': '',
