@@ -71,6 +71,32 @@ def member_login(request):
 
 	return render(request,'member_login.html', args)
 
+def member_signup(request):
+	if 'button1' in request.POST:
+		login_name = request.POST.get("login_name")
+		login_company = request.POST.get("login_company")
+		login_email = request.POST.get("login_email")		
+
+		signup_check(request,login_name,login_company,login_email)
+		signup_preregister(request,login_name,login_company,login_email)
+		
+
+		return signup(request)
+		
+	elif 'button2' in request.POST:
+		request.session['redirect'] = 'main'
+		return render(request,'redirect.html')
+
+	else:
+		form = login_Form()
+	args = {}
+	args.update(csrf(request))
+	args['form'] = form
+	request.session["login_name"] = ""
+	request.session["login_password"] = ""
+
+	return render(request,'member_signup.html', args)
+
 
 
 
