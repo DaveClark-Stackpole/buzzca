@@ -12,9 +12,9 @@ import MySQLdb
 
 def db_set(request):  # Module to set DB settings to the one that works.  Whether local or Server
 
-	db = MySQLdb.connect(host="127.0.0.1",user="buzzappc_buzzapp",passwd="benny6868",db='buzzappc_buzzmysql') # Server Deployment
+	# db = MySQLdb.connect(host="127.0.0.1",user="buzzappc_buzzapp",passwd="benny6868",db='buzzappc_buzzmysql') # Server Deployment
 
-	# db = MySQLdb.connect(host="127.0.0.1",user="root",passwd="benny6868",db='buzzappc_buzzmysql')  # Local deployment
+	db = MySQLdb.connect(host="127.0.0.1",user="root",passwd="benny6868",db='buzzappc_buzzmysql')  # Local deployment
 	
 	cursor = db.cursor()
 	return db, cursor

@@ -45,10 +45,7 @@ def main(request):
 	return render(request, "main.html",)
 
 def member_login(request):
-
-
 	if 'button1' in request.POST:
-
 		login_name = request.POST.get("login_name")
 		login_password = request.POST.get("login_password")
 		e=3/0
@@ -73,5 +70,8 @@ def member_login(request):
 	request.session["login_password"] = ""
 
 	return render(request,'member_login.html', args)
+
+
+
 
 
