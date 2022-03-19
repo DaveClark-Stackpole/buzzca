@@ -76,17 +76,14 @@ def member_signup(request):
 		login_name = request.POST.get("login_name")
 		login_company = request.POST.get("login_company")
 		login_email = request.POST.get("login_email")		
-
-		signup_check(request,login_name,login_company,login_email)
-		signup_preregister(request,login_name,login_company,login_email)
-		
+		member_register_check(request,login_name,login_company,login_email)  # Module to check if person has signed up before / if email is legite /  if company name exists.
+		member_preregister(request,login_name,login_company,login_email)  # Module to register name, company and email in db but leave unverified until email verification.
 
 		return signup(request)
-		
+
 	elif 'button2' in request.POST:
 		request.session['redirect'] = 'main'
 		return render(request,'redirect.html')
-
 	else:
 		form = login_Form()
 	args = {}
@@ -94,8 +91,29 @@ def member_signup(request):
 	args['form'] = form
 	request.session["login_name"] = ""
 	request.session["login_password"] = ""
-
+	request.session['test8'] = 1
 	return render(request,'member_signup.html', args)
+
+def member_register_check(request,login_name,login_company,login_email):
+	db, cur = db_set(request)
+	cur.execute("""CREATE TABLE IF NOT EXISTS member_data(Id INT PRIMARY KEY AUTO_INCREMENT,name CHAR(80), company CHAR(80), email CHAR(80), type CHAR(80), verified INT(10))""")
+
+	sql = "SELECT COUNT(*) FROM member_data where company = '%s'" %(login_company)
+	cur.execute(sql)
+	tmp = cur.fetchall()
+	company_count = int(tmp[0][0])
+
+	sql = "SELECT COUNT(*) FROM member_data where email = '%s'" %(login_email)
+	cur.execute(sql)
+	tmp = cur.fetchall()
+	company_email = int(tmp[0][0])
+
+	db.close()
+
+
+	x=3/0
+
+	return 
 
 
 
