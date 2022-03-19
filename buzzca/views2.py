@@ -84,13 +84,12 @@ def member_signup(request):
 		request.session['login_company'] = login_company
 		request.session['login_email'] = login_email
 
-		if request.session['register_check'] !=3:   # Using a bounce feature to go in and out of this module after checks
-			request.session['redirect'] = 'member_register_check'
-			return render(request,'redirect.html')
+		request.session['redirect'] = 'member_register_check'
+		return render(request,'redirect.html')
 
-		member_preregister(request,login_name,login_company,login_email)  # Module to register name, company and email in db but leave unverified until email verification.
+		# member_preregister(request,login_name,login_company,login_email)  # Module to register name, company and email in db but leave unverified until email verification.
 
-		return render(request, "main.html",)
+
 
 	elif 'button2' in request.POST:
 		request.session['redirect'] = 'main'
@@ -108,6 +107,7 @@ def member_signup(request):
 def member_register_check(request):
 	login_company = request.session['login_company']
 	login_email = request.session['login_email']
+	login_name = request.session['login_name']
 	db, cur = db_set(request)
 	cur.execute("""CREATE TABLE IF NOT EXISTS member_data(Id INT PRIMARY KEY AUTO_INCREMENT,name CHAR(80), company CHAR(80), email CHAR(80), type CHAR(80), verified INT(10))""")
 	sql = "SELECT COUNT(*) FROM member_data where company = '%s'" %(login_company)
@@ -125,13 +125,23 @@ def member_register_check(request):
 	elif company_email > 0:
 		request.session['registration_check'] = 2
 	else:
-		request.session['registration_check'] = 3
+		request.session['redirect'] = 'member_preregister'
+		return render(request,'redirect.html')
 
 	request.session['redirect'] = 'member_signup'
 	return render(request,'redirect.html')
 
-def member_preregister(request,login_name,login_company,login_email):
-	return 
+def member_preregister(request):
+	login_company = request.session['login_company']
+	login_email = request.session['login_email']
+	login_name = request.session['login_name']
+	v = 0
+	t = 'admin'
+	db, cur = db_set(request)
+	cur.execute('''INSERT INTO member_data(name,company,email,type,verified) VALUES(%s,%s,%s,%s,%s)''', (login_name,login_company,login_email,t,v))
+	db.commit()
+	db.close()
+	return render(request,'member_preregister.html') 
 
 
 
