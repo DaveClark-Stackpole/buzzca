@@ -71,15 +71,23 @@ def member_login(request):
 
 	return render(request,'member_login.html', args)
 def member_signup_initial(request):
-	request.session['
+	request.session['registration_check'] = 0
+	request.session['redirect'] = 'member_signup'
+	return render(request,'redirect.html')
+
 def member_signup(request):
-	#r=4/0
 	if 'button1' in request.POST:
 		login_name = request.POST.get("login_name")
 		login_company = request.POST.get("login_company")
-		login_email = request.POST.get("login_email")		
-		request.session['registration_check'] = 0
-		member_register_check(request,login_name,login_company,login_email)  # Module to check if person has signed up before / if email is legite /  if company name exists.
+		login_email = request.POST.get("login_email")
+		request.session['login_name'] = login_name
+		request.session['login_company'] = login_company
+		request.session['login_email'] = login_email
+
+		if request.session['register_check'] !=3:   # Using a bounce feature to go in and out of this module after checks
+			request.session['redirect'] = 'member_register_check'
+			return render(request,'redirect.html')
+
 		member_preregister(request,login_name,login_company,login_email)  # Module to register name, company and email in db but leave unverified until email verification.
 
 		return render(request, "main.html",)
@@ -97,7 +105,9 @@ def member_signup(request):
 	request.session['test8'] = 1
 	return render(request,'member_signup.html', args)
 
-def member_register_check(request,login_name,login_company,login_email):
+def member_register_check(request):
+	login_company = request.session['login_company']
+	login_email = request.session['login_email']
 	db, cur = db_set(request)
 	cur.execute("""CREATE TABLE IF NOT EXISTS member_data(Id INT PRIMARY KEY AUTO_INCREMENT,name CHAR(80), company CHAR(80), email CHAR(80), type CHAR(80), verified INT(10))""")
 	sql = "SELECT COUNT(*) FROM member_data where company = '%s'" %(login_company)
@@ -115,7 +125,7 @@ def member_register_check(request,login_name,login_company,login_email):
 	elif company_email > 0:
 		request.session['registration_check'] = 2
 	else:
-		return
+		request.session['registration_check'] = 3
 
 	request.session['redirect'] = 'member_signup'
 	return render(request,'redirect.html')
