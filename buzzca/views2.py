@@ -117,11 +117,32 @@ def member_preregister(request):
 	login_email=str(login_email)
 
 	
+
+	v = 0
+	t = 'admin'
+	st=6
+	db, cur = db_set(request)
+	cur.execute('''INSERT INTO member_data(name,company,email,type,verified) VALUES(%s,%s,%s,%s,%s)''', (login_name,login_company,login_email,t,v))
+	db.commit()
+
+	sql = "SELECT Id FROM member_data where name = '%s' and company = '%s' and email = '%s'" %(login_name,login_company,login_email)
+	cur.execute(sql)
+	tmp = cur.fetchall()
+	id1 = int(tmp[0][0])
+
+	db.close()
+
+	# st = 6db, cur = db_set(request)/0
+
+
 	b = "\r\n"
 	ctr = 0
+
+
+	link1 = 'buzzapp.ca/member_validate/get/'+str(id1)
 	message_subject = 'BuzzApp Registration'
 	message3 = "Congratulations " + login_name + " You  have registered for BuzzApp with your company " + login_company
-	message2 = "click link to verify :   buzzapp.ca"
+	message2 = "click the link to validate your membership:   " + link1
 
 	toaddrs = [login_email]
 	#toaddrs = ["rbiram@stackpole.com","rzylstra@stackpole.com","lbaker@stackpole.com","dmilne@stackpole.com","sbrownlee@stackpole.com","pmurphy@stackpole.com","pstreet@stackpole.com","kfrey@stackpole.com","asmith@stackpole.com","smcmahon@stackpole.com","gharvey@stackpole.com","ashoemaker@stackpole.com","jreid@stackpole.com"]
@@ -137,15 +158,16 @@ def member_preregister(request):
 	server.sendmail(fromaddr, toaddrs, message)
 	server.quit()
 
-	v = 0
-	t = 'admin'
-	db, cur = db_set(request)
-	cur.execute('''INSERT INTO member_data(name,company,email,type,verified) VALUES(%s,%s,%s,%s,%s)''', (login_name,login_company,login_email,t,v))
-	db.commit()
-	db.close()
+
 	return render(request,'member_preregister.html') 
 
+def member_validate(request, index):
+	v = 1
+	db, cur = db_set(request)
+	sql =( 'update member_data SET verified="%s" WHERE Id="%s"' % (v,index))
+	cur.execute(sql)
+	db.commit()
+	db.close()
 
-
-
-
+	request.session['redirect'] = 'main'
+	return render(request,'redirect.html')
