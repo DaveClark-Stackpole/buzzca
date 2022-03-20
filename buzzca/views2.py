@@ -139,7 +139,7 @@ def member_preregister(request):
 	ctr = 0
 
 
-	link1 = 'buzzapp.ca/member_validate/get/'+str(id1)
+	link1 = request.session['server_link'] + 'member_validate/get/'+str(id1)
 	message_subject = 'BuzzApp Registration'
 	message3 = "Congratulations " + login_name + " You  have registered for BuzzApp with your company " + login_company
 	message2 = "click the link to validate your membership:   " + link1
