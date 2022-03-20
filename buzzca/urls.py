@@ -14,30 +14,22 @@ Including another URLconf
 		2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-# from django.urls import include,path
 from django.conf.urls import include, url
-
-
-
 from django.conf import settings
 from django.conf.urls.static import static
-
-
 from buzzca.views2 import main, member_login,member_signup,member_signup_initial,member_preregister,member_register_check
 
-
-
 urlpatterns = [
-		# url(r'^admin/',include(admin.site.urls)),
-		# path('admin/', admin.site.urls),
-		# path('test/',include('views2.test')),
 		url(r'^$',main),
 		url(r'^main',main),
+
+		# Login and Registration  ***************************************************************************
 		url(r'^member_login/', member_login),
 		url(r'^member_signup/', member_signup),
 		url(r'^member_signup_initial/', member_signup_initial),
 		url(r'^member_register_check/', member_register_check),
 		url(r'^member_preregister/', member_preregister),
+		# ***************************************************************************************************
 
 
 

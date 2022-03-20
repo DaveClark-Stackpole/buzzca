@@ -6,6 +6,8 @@ from datetime import datetime
 
 from django.template.context_processors import csrf
 
+import smtplib
+from smtplib import SMTP
 
 from buzzca.forms import login_Form
 import os
@@ -18,27 +20,8 @@ import MySQLdb
 
 # Call Main Login screen
 def main(request):
-	# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-	# BASE_DIR = BASE_DIR + '\\static\\buzzca'
-	# # t=4/0
-	# dir = BASE_DIR
-	# p=8/0
-
-
-
-	# db, cur = db_set(request)
-
-	# a = 'Dave'
-	# b = 10
-	# cur.execute("""CREATE TABLE IF NOT EXISTS test_A(Id INT PRIMARY KEY AUTO_INCREMENT,variable_A VARCHAR(80), number_A INT(30))""")
-	# cur.execute('''INSERT INTO test_A(variable_A,number_A) VALUES(%s,%s)''', (a,b))
-	# db.commit()
-	# db.close()
-
-
 	t=int(time.time())
 	request.session['TCURR'] = t
-
 	request.session['secondary_menu_color']='#A0AEB8'
 	request.session['secondary_text_color'] ='#000000'
 	request.session['main_menu_color'] ='#BCCAD5'
@@ -83,13 +66,8 @@ def member_signup(request):
 		request.session['login_name'] = login_name
 		request.session['login_company'] = login_company
 		request.session['login_email'] = login_email
-
-		request.session['redirect'] = 'member_register_check'
+		request.session['redirect'] = 'member_register_check'     # Redirect back to check registration validity
 		return render(request,'redirect.html')
-
-		# member_preregister(request,login_name,login_company,login_email)  # Module to register name, company and email in db but leave unverified until email verification.
-
-
 
 	elif 'button2' in request.POST:
 		request.session['redirect'] = 'main'
@@ -125,16 +103,40 @@ def member_register_check(request):
 	elif company_email > 0:
 		request.session['registration_check'] = 2
 	else:
-		request.session['redirect'] = 'member_preregister'
+		request.session['redirect'] = 'member_preregister'  # If registration valid then write to database and bounce back with message
 		return render(request,'redirect.html')
 
-	request.session['redirect'] = 'member_signup'
+	request.session['redirect'] = 'member_signup'   # Registration not valid so bounce back with message based on code number
 	return render(request,'redirect.html')
 
 def member_preregister(request):
 	login_company = request.session['login_company']
 	login_email = request.session['login_email']
 	login_name = request.session['login_name']
+
+	login_email=str(login_email)
+
+	
+	b = "\r\n"
+	ctr = 0
+	message_subject = 'BuzzApp Registration'
+	message3 = "Congratulations " + login_name + " You  have registered for BuzzApp with your company " + login_company
+	message2 = "click link to verify :   buzzapp.ca"
+
+	toaddrs = [login_email]
+	#toaddrs = ["rbiram@stackpole.com","rzylstra@stackpole.com","lbaker@stackpole.com","dmilne@stackpole.com","sbrownlee@stackpole.com","pmurphy@stackpole.com","pstreet@stackpole.com","kfrey@stackpole.com","asmith@stackpole.com","smcmahon@stackpole.com","gharvey@stackpole.com","ashoemaker@stackpole.com","jreid@stackpole.com"]
+	fromaddr = 'wecloud47@gmail.com'
+	frname = 'Dave'
+	server = SMTP('smtp.gmail.com', 587)
+	server.ehlo()
+	server.starttls()
+	server.ehlo()
+	server.login('StackpolePMDS@gmail.com', 'stacktest6060')
+	message = "From: %s\r\n" % frname + "To: %s\r\n" % ', '.join(toaddrs) + "Subject: %s\r\n" % message_subject + "\r\n" 
+	message = message+message_subject + "\r\n\r\n" + "\r\n\r\n" + message3 + "\r\n\r\n" + message2
+	server.sendmail(fromaddr, toaddrs, message)
+	server.quit()
+
 	v = 0
 	t = 'admin'
 	db, cur = db_set(request)
