@@ -70,16 +70,26 @@ def member_login(request):
 	request.session["login_password"] = ""
 
 	return render(request,'member_login.html', args)
+def member_signup_initial(request):
+	request.session['registration_check'] = 0
+	request.session['redirect'] = 'member_signup'
+	return render(request,'redirect.html')
 
 def member_signup(request):
 	if 'button1' in request.POST:
 		login_name = request.POST.get("login_name")
 		login_company = request.POST.get("login_company")
-		login_email = request.POST.get("login_email")		
-		member_register_check(request,login_name,login_company,login_email)  # Module to check if person has signed up before / if email is legite /  if company name exists.
-		member_preregister(request,login_name,login_company,login_email)  # Module to register name, company and email in db but leave unverified until email verification.
+		login_email = request.POST.get("login_email")
+		request.session['login_name'] = login_name
+		request.session['login_company'] = login_company
+		request.session['login_email'] = login_email
 
-		return signup(request)
+		request.session['redirect'] = 'member_register_check'
+		return render(request,'redirect.html')
+
+		# member_preregister(request,login_name,login_company,login_email)  # Module to register name, company and email in db but leave unverified until email verification.
+
+
 
 	elif 'button2' in request.POST:
 		request.session['redirect'] = 'main'
@@ -94,26 +104,44 @@ def member_signup(request):
 	request.session['test8'] = 1
 	return render(request,'member_signup.html', args)
 
-def member_register_check(request,login_name,login_company,login_email):
+def member_register_check(request):
+	login_company = request.session['login_company']
+	login_email = request.session['login_email']
+	login_name = request.session['login_name']
 	db, cur = db_set(request)
 	cur.execute("""CREATE TABLE IF NOT EXISTS member_data(Id INT PRIMARY KEY AUTO_INCREMENT,name CHAR(80), company CHAR(80), email CHAR(80), type CHAR(80), verified INT(10))""")
-
 	sql = "SELECT COUNT(*) FROM member_data where company = '%s'" %(login_company)
 	cur.execute(sql)
 	tmp = cur.fetchall()
 	company_count = int(tmp[0][0])
-
 	sql = "SELECT COUNT(*) FROM member_data where email = '%s'" %(login_email)
 	cur.execute(sql)
 	tmp = cur.fetchall()
 	company_email = int(tmp[0][0])
-
 	db.close()
 
+	if company_count > 0:
+		request.session['registration_check'] = 1
+	elif company_email > 0:
+		request.session['registration_check'] = 2
+	else:
+		request.session['redirect'] = 'member_preregister'
+		return render(request,'redirect.html')
 
-	x=3/0
+	request.session['redirect'] = 'member_signup'
+	return render(request,'redirect.html')
 
-	return 
+def member_preregister(request):
+	login_company = request.session['login_company']
+	login_email = request.session['login_email']
+	login_name = request.session['login_name']
+	v = 0
+	t = 'admin'
+	db, cur = db_set(request)
+	cur.execute('''INSERT INTO member_data(name,company,email,type,verified) VALUES(%s,%s,%s,%s,%s)''', (login_name,login_company,login_email,t,v))
+	db.commit()
+	db.close()
+	return render(request,'member_preregister.html') 
 
 
 

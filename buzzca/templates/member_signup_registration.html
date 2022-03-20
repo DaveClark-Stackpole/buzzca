@@ -1,0 +1,33 @@
+
+{% extends "main.html" %}
+
+
+<script type="text/javascript">
+	$(document).ready(function(){
+	$("#myModal").modal('show');
+	});
+</script>
+
+
+<br><br><br><br><br>
+
+<!-- Modal For Are you sure to Close -->
+<div class="modal fade" id="myModal" role="dialog">
+	<div class="modal-dialog modal-lg">
+	  <div class="modal-content" >
+		<div class="modal-body" >
+		  <font color="#000000" size ="4">
+			  <table>
+				<tr>
+					<td> <center><img src="/static/logo.jpg?{{TCUR}}"	style="border-radius: 15px;" height="200"></center></td>
+					<td><b>An Email has been sent to --- for verification.</b><br><br><br>
+						<button type="button" class="close" data-dismiss="modal">OK</button>
+					</td>
+				</tr>
+			  </table>
+		  </font>
+		</div>
+	  </div>
+	</div>
+	</div>
+	
