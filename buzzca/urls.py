@@ -18,6 +18,7 @@ from django.conf.urls import include, url
 from django.conf import settings
 from django.conf.urls.static import static
 from buzzca.views2 import main, member_login,member_signup,member_signup_initial,member_preregister,member_register_check, member_validate
+from buzzca.views2 import member_login_check,member_login_initial
 
 
 urlpatterns = [
@@ -26,6 +27,8 @@ urlpatterns = [
 
 		# Login and Registration  ***************************************************************************
 		url(r'^member_login/', member_login),
+		url(r'^member_login_initial/', member_login_initial),
+		url(r'^member_login_check/', member_login_check),
 		url(r'^member_signup/', member_signup),
 		url(r'^member_signup_initial/', member_signup_initial),
 		url(r'^member_register_check/', member_register_check),
