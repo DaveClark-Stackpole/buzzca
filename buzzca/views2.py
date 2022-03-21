@@ -19,10 +19,12 @@ import MySQLdb
 def main(request):
 	t=int(time.time())
 	request.session['TCURR'] = t
-	request.session['secondary_menu_color']='#D5CFB5'
+	request.session['secondary_menu_color']='#415340'
 	request.session['secondary_text_color'] ='#ffffff'
-	request.session['main_menu_color'] ='#A6A18C'
+	request.session['main_menu_color'] ='#F1F8E9'
 	request.session['main_text_color'] ='#000000'
+	request.session['third_menu_color']='#A1BF8F'
+	request.session['third_text_color'] ='#ffffff'
 	return render(request, "main.html",)
 
 
