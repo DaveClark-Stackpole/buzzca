@@ -27,28 +27,28 @@
 
 <table id="prodsum">
 	<tr><td colspan="2" style="font-size:25px;background-color: {{request.session.secondary_menu_color}}; color: {{request.session.secondary_text_color}};">
-		<font style="font-size: 25px; color:black; text-shadow: 1px 1px 2px white, 0 0 25px black, 0 0 5px black;">
+		<font style="font-size: 25px; color:{{request.session.main_text_color}}; text-shadow: 1px 1px 2px {{request.session.secondary_text_color}}, 0 0 25px {{request.session.main_text_color}}, 0 0 5px {{request.session.main_text_color}};">
 		<center>Log In</center>
 	</font>
 	
 	</td></tr>
 
 		<tr><td>  
-			<font style="font-size: 17px; color:black; text-shadow: 1px 1px 2px white, 0 0 25px black, 0 0 5px black;">
+			<font style="font-size: 17px; color:{{request.session.main_text_color}}; text-shadow: 1px 1px 2px {{request.session.secondary_text_color}}, 0 0 25px {{request.session.main_text_color}}, 0 0 5px {{request.session.main_text_color}};">
 			Name
 				</font>
 		</td><td>
 	<input style="font-size:14px;width:320px;height:30px;" type="text" name="login_name" autofocus>
 </td></tr>
 <tr><td>  
-	<font style="font-size: 17px; color:black; text-shadow: 1px 1px 2px white, 0 0 25px black, 0 0 5px black;">
+	<font style="font-size: 17px; color:{{request.session.main_text_color}}; text-shadow: 1px 1px 2px {{request.session.secondary_text_color}}, 0 0 25px {{request.session.main_text_color}}, 0 0 5px {{request.session.main_text_color}};">
 	Company
 		</font>
 </td><td>
 <input style="font-size:14px;width:320px;height:30px;" type="text" name="login_company" autofocus>
 </td></tr>
 <tr><td>
-	<font style="font-size: 17px; color:black; text-shadow: 1px 1px 2px white, 0 0 25px black, 0 0 5px black;">
+	<font style="font-size: 17px; color:{{request.session.main_text_color}}; text-shadow: 1px 1px 2px {{request.session.secondary_text_color}}, 0 0 25px {{request.session.main_text_color}}, 0 0 5px {{request.session.main_text_color}};">
 	Password
 </font>	
 	</td><td>
